@@ -15,7 +15,8 @@
     "react-hook-form": "^7.46.2",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
-    "styled-components": "^6.0.8"
+    "styled-components": "^6.0.8",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

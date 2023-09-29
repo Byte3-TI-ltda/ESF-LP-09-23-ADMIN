@@ -48,8 +48,13 @@ export const FilterOptions = styled.div`
 	border-radius: 6px;
 
 	display: flex;
-	gap: 0.5rem;
+	gap: 1rem;
 	align-self: flex-end;
+
+	div {
+		display: flex;
+		gap: 0.5rem;
+	}
 
 	button {
     	border: 1px solid var(--gray-200);
@@ -59,9 +64,15 @@ export const FilterOptions = styled.div`
     	color: var(--text-size);
 		display: flex;
 		align-items: center;
+		gap: 0.5rem;
 
 		&:hover {
 			background: var(--gray-200);
 		}
   	}
+
+	.divider {
+		width: 1px;
+		background-color: var(--gray-200)
+	}
 `
