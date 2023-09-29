@@ -1,7 +1,7 @@
 import { FilterOptions, TableContainer, TableWrapper } from "./styles";
 import usersData from '../../data/users.json'
 
-import { TbSortAscending, TbSortAscendingNumbers, TbTableExport } from 'react-icons/tb';
+import { TbSortAscending, TbSortAscendingNumbers, TbTableExport, TbTable } from 'react-icons/tb';
 
 import * as XLSX from 'xlsx';
 
@@ -39,10 +39,19 @@ export default function Table() {
                 <div className="divider" />
 
                 <div>
-                    <button onClick={handleExport}>
-                        <TbTableExport size={20} />
-                        <span>Exportar dados</span>
-                    </button>
+                    <div>
+                        <button>
+                            <TbTable size={20} />
+                            <span>Ver tudo</span>
+                        </button>
+                    </div>
+
+                    <div>
+                        <button onClick={handleExport}>
+                            <TbTableExport size={20} />
+                            <span>Exportar dados</span>
+                        </button>
+                    </div>
                 </div>
             </FilterOptions>
             <TableContainer>

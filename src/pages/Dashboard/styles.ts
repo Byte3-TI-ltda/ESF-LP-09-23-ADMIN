@@ -3,6 +3,14 @@ import styled from "styled-components";
 export const DashboardContainer = styled.main`
     padding: 2rem;
     width: 100%;
+    flex: 1;
+
+    & > div {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column; 
+        gap: 1rem;
+    }
 `
 
 export const SummaryContainer = styled.header`
@@ -36,5 +44,9 @@ export const SummaryCard = styled.div`
     span {
         font-weight: 600;
         font-size: var(--title-size);
+    }
+
+    &:hover {
+        outline: 1px solid var(--accent-color);
     }
 `

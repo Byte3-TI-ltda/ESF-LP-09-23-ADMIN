@@ -28,35 +28,5 @@
         "name": "David",
         "email": "david@example.com",
         "date": "2022-01-05"
-    },
-    {
-        "id": "6",
-        "name": "Sarah",
-        "email": "sarah@example.com",
-        "date": "2022-01-06"
-    },
-    {
-        "id": "7",
-        "name": "Matthew",
-        "email": "matthew@example.com",
-        "date": "2022-01-07"
-    },
-    {
-        "id": "8",
-        "name": "Olivia",
-        "email": "olivia@example.com",
-        "date": "2022-01-08"
-    },
-    {
-        "id": "9",
-        "name": "Daniel",
-        "email": "daniel@example.com",
-        "date": "2022-01-09"
-    },
-    {
-        "id": "10",
-        "name": "Sophia",
-        "email": "sophia@example.com",
-        "date": "2022-01-10"
     }
 ]

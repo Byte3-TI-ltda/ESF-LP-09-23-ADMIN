@@ -36,6 +36,7 @@ export const GlobalStyles = createGlobalStyle`
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     height: 100vh;
+    overflow-x: hidden;
 
     @media screen and (max-width: 992px) {
     font-size: 90%;

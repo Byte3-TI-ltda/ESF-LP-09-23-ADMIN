@@ -3,6 +3,7 @@ import { DashboardContainer, SummaryCard, SummaryContainer } from "./styles";
 import usersData from '../../data/users.json'
 
 import { FiUsers, FiCreditCard } from 'react-icons/fi';
+import Chart from "../../components/Chart";
 
 export default function Dashboard() {
     return (
@@ -27,7 +28,15 @@ export default function Dashboard() {
                 </SummaryCard>
             </SummaryContainer>
 
-            <Table />
+            <div>
+                <h2>Dados dos usuários</h2>
+                <Table />
+            </div>
+
+            <div>
+                <h2>Atividade dos usuários</h2>
+                <Chart />
+            </div>
         </DashboardContainer>
     )
 }
