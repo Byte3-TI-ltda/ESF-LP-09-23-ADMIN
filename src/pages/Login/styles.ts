@@ -3,7 +3,17 @@ import styled from "styled-components";
 export const LoginContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    height: 100%;
+    width: 100%;
+    height: 100vh;
+
+    @media screen and (max-width: 992px) {
+        display: flex;
+        padding: 0 1rem;
+
+        .banner {
+            display: none;
+        }
+    }
 `
 
 export const Banner = styled.div`
@@ -21,14 +31,16 @@ export const LoginFormContainer = styled.div`
     gap: 2rem;
 
     p {
-        color: var(--gray-100)
+        color: var(--gray-100);
+        text-align: center;
     }
 
     form {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        width: 30rem;
+        max-width: 30rem;
+        width: 100%;
 
         div {
             display: flex;
@@ -78,5 +90,11 @@ export const LoginFormContainer = styled.div`
         span {
             color: var(--danger-color);
         }
+    }
+
+    @media screen and (max-width: 992px) {
+       form {
+            max-width: 25rem;
+       }
     }
 `;

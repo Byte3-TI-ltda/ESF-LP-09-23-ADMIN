@@ -28,7 +28,7 @@ export default function Login() {
 
     return (
         <LoginContainer>
-            <Banner>
+            <Banner className='banner'>
                 Text
             </Banner>
             <LoginFormContainer>

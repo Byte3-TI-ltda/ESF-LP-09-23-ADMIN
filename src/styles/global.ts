@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     /* Cores */
     --background: #171717; /* Cor de fundo */
     --text-color: #ffffff; /* Cor do texto principal */
-    --accent-color: #FFC800; /* Cor de destaque/acento */
+    --accent-color: #fcbf49; /* Cor de destaque/acento */
     --input-bg: #0D0D0D; 
     --input-color: #555758; 
     --danger-color: #ef233c;
@@ -36,6 +36,10 @@ export const GlobalStyles = createGlobalStyle`
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     height: 100vh;
+
+    @media screen and (max-width: 992px) {
+    font-size: 90%;
+  }
   }
 
   #root {
