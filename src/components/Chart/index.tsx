@@ -12,7 +12,7 @@ const data = [
 export default function Chart() {
     return (
         <ChartContainer>
-            <ResponsiveContainer width="95%" height={400}>
+            <ResponsiveContainer className="chart" width="95%">
                 <LineChart data={data}>
                     <Line type="monotone" strokeWidth={2} dataKey="uv" stroke="#fcbf49" />
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />

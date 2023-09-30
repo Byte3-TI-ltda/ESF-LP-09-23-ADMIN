@@ -3,15 +3,29 @@ import styled from "styled-components";
 export const TableWrapper = styled.section`
   display: flex;
   flex-direction: column;
+  
+  .table {
+	display: flex;
+  	overflow-x: auto;
+  }
 `
 
 export const TableContainer = styled.table`
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 0.5rem;
-    margin-top: 1.5rem;
+  	border-collapse: separate;
+  	border-spacing: 0 0.5rem;
+  	margin-top: 1.5rem;
+  	width: 100%;
 
-    tr {
+	th, td { 
+
+		&:first-child {
+			min-width: 8rem; 
+		}
+
+		min-width: 15rem; 
+	}
+
+	tr {
         transition: 0.2s;
     }
     
@@ -75,4 +89,13 @@ export const FilterOptions = styled.div`
 		width: 1px;
 		background-color: var(--gray-200)
 	}
+
+	@media screen and (max-width: 480px) {
+		width: 100%;
+		justify-content: center;
+
+    	span {
+			display: none;
+		}
+  	}
 `

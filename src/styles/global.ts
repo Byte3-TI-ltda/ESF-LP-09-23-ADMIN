@@ -38,9 +38,9 @@ export const GlobalStyles = createGlobalStyle`
     height: 100vh;
     overflow-x: hidden;
 
-    @media screen and (max-width: 992px) {
-    font-size: 90%;
-  }
+    @media screen and (max-width: 1120px) {
+    	font-size: 90%;
+  	}
   }
 
   #root {

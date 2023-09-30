@@ -1,14 +1,15 @@
-import { Link, useLocation } from "react-router-dom";
-import useSidebarContext from "../../hooks/useSidebar";
+import { Link } from "react-router-dom";
+import useSidebarContext from "../../../hooks/useSidebar";
 import { SideBarContainer, SidebarActions } from "./styles";
 
 import { FiHome, FiSettings, FiMenu, FiHelpCircle, FiUser } from 'react-icons/fi'
 
-export default function Sidebar() {
-    const { activeMenuBar, changeMenuStatus } = useSidebarContext();
+interface SideMenuProps {
+    currentURL: string;
+}
 
-    const location = useLocation();
-    const currentURL = location.pathname;
+export default function SideMenu({ currentURL }: SideMenuProps) {
+    const { activeMenuBar, changeMenuStatus } = useSidebarContext();
 
     return (
         <SideBarContainer className={activeMenuBar === true ? 'open' : ''}>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SideBarContainer = styled.div`
+export const SideBarContainer = styled.aside`
     width: fit-content;
     height: 100dvh;
     background: var(--gray-200);
@@ -17,6 +17,10 @@ export const SideBarContainer = styled.div`
             display: block;
         }
     }
+
+    @media screen and (max-width: 1120px) {
+    	display: none;
+  	}
 `
 
 export const SidebarActions = styled.div`

@@ -54,26 +54,29 @@ export default function Table() {
                     </div>
                 </div>
             </FilterOptions>
-            <TableContainer>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Data de inscrição</th>
-                    </tr>
-                </thead>
-                {usersData.map(user => (
-                    <tbody key={user.id}>
+
+            <div className="table">
+                <TableContainer>
+                    <thead>
                         <tr>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.date}</td>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Data de inscrição</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        {usersData.map(user => (
+                            <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.date}</td>
+                            </tr>
+                        ))}
                     </tbody>
-                ))}
-            </TableContainer>
+                </TableContainer>
+            </div>
         </TableWrapper>
     )
 }
