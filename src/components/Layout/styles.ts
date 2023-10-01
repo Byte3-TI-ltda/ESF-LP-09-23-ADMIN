@@ -6,4 +6,16 @@ export const LayoutContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: start;
+
+  & > div, .currentPage {
+    width: 100%;
+  }
+
+  .currentPage {
+    padding: 2rem;
+
+    @media screen and (max-width: 1120px) {
+    	padding: 0.5rem 0.5rem 5rem 0.5rem;
+  	}
+  }
 `;

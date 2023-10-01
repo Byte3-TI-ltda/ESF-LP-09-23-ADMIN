@@ -6,6 +6,14 @@ export const LoginContainer = styled.div`
     width: 100%;
     height: 100vh;
 
+    & > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+
     @media screen and (max-width: 992px) {
         display: flex;
         padding: 0 1rem;
@@ -19,16 +27,15 @@ export const LoginContainer = styled.div`
 export const Banner = styled.div`
     width: 100%;
     background-color: var(--gray-300);
+
+    img {
+        width: 20rem
+    }
 `;
 
 export const LoginFormContainer = styled.div`
     width: 100%;
     background-color: var(--background);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
 
     p {
         color: var(--gray-100);

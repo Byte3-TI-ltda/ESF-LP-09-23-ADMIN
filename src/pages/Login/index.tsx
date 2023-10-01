@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Banner, LoginContainer, LoginFormContainer } from "./styles";
+import heroImage from '../../assets/heroImage.png';
 
 type InputProps = {
     username: string
@@ -29,7 +30,8 @@ export default function Login() {
     return (
         <LoginContainer>
             <Banner className='banner'>
-                Text
+                <img src={heroImage} alt='Imagem do banner' />
+                <h4>Acesso rápido, informações precisas. A evolução do seu dia a dia.</h4>
             </Banner>
             <LoginFormContainer>
                 <h1>Login</h1>

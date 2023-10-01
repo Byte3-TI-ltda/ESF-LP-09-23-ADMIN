@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const DashboardContainer = styled.main`
-    padding: 2rem;
     width: 100%;
     flex: 1;
 
@@ -11,10 +10,6 @@ export const DashboardContainer = styled.main`
         flex-direction: column; 
         gap: 1rem;
     }
-
-    @media screen and (max-width: 1120px) {
-    	padding: 2rem 2rem 5rem 2rem;
-  	}
 `
 
 export const SummaryContainer = styled.header`

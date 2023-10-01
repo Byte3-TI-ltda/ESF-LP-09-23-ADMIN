@@ -5,9 +5,17 @@ export const ChartContainer = styled.div`
     flex: 1;
     flex-direction: column;
     width: 100%;
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    padding: 0.5rem;
 
     .chart {
         height: 30rem !important;
+
+        .tooltip {
+            background: var(--gray-200) !important;
+            border-radius: 6px;
+        }
 
         @media screen and (max-width: 1120px) {
     	    width: 100% !important;

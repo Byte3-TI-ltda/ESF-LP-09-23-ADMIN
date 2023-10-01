@@ -1,31 +1,25 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import { GlobalStyles } from './styles/global';
-import Settings from './pages/Settings';
-import { SidebarProvider } from './contexts/SidebarContext';
+
 import Layout from './components/Layout';
-import Menu from './components/Menu';
+
+import { SidebarProvider } from './contexts/SidebarContext';
+
+import allRoutes from './Routes';
 
 function App() {
-  function SidebarWithCondition() {
-    const location = useLocation();
-    const isLoginPage = location.pathname === "/login";
-    const isSignUpPage = location.pathname === "/signup";
-
-    return !isLoginPage && !isSignUpPage ? <Menu /> : null;
-  }
   return (
     <BrowserRouter>
       <GlobalStyles />
 
       <SidebarProvider>
         <Layout>
-          <SidebarWithCondition />
           <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/settings' element={<Settings />} />
+            {allRoutes.map(route => (
+              <Route key={route.path} path={route.path} element={route.element} />
+            ))}
+            <Route path="*" element={<Navigate to="/not-found" replace />} />
           </Routes>
         </Layout>
       </SidebarProvider>
