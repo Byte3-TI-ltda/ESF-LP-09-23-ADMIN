@@ -14,7 +14,7 @@ export const LoginContainer = styled.div`
         gap: 2rem;
     }
 
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width: 1120px) {
         display: flex;
         padding: 0 1rem;
 

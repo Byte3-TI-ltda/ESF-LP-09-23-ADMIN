@@ -16,8 +16,23 @@ export const SummaryContainer = styled.header`
     margin-top: 1rem;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+
+    @media screen and (max-width: 1120px) {
+        /* padding: 0.1rem;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+
+        > div {
+            min-width: 11rem;
+        } */
+
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
 `
 
 export const SummaryCard = styled.div`
@@ -29,6 +44,7 @@ export const SummaryCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-shrink: 0;
 
     div {
         width: fit-content;

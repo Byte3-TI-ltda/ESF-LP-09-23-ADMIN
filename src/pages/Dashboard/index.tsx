@@ -29,13 +29,13 @@ export default function Dashboard() {
             </SummaryContainer>
 
             <div>
-                <h2>Dados dos usuários</h2>
-                <Table />
+                <h2>Atividade dos usuários</h2>
+                <Chart />
             </div>
 
             <div>
-                <h2>Atividade dos usuários</h2>
-                <Chart />
+                <h2>Dados dos usuários</h2>
+                <Table />
             </div>
         </DashboardContainer>
     )
