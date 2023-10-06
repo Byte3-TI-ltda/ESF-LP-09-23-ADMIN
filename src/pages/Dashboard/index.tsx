@@ -1,11 +1,14 @@
 import Table from "../../components/Table";
 import { DashboardContainer, SummaryCard, SummaryContainer } from "./styles";
-import usersData from '../../data/users.json'
 
 import { FiUsers, FiCreditCard } from 'react-icons/fi';
 import Chart from "../../components/Chart";
 
+import useUsersData from '../../hooks/useUsersData';
+
 export default function Dashboard() {
+    const { usersData } = useUsersData();
+
     return (
         <DashboardContainer>
             <h1>Dashboard</h1>

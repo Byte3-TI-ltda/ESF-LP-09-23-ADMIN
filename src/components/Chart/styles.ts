@@ -10,7 +10,7 @@ export const ChartContainer = styled.div`
     padding: 0.5rem;
 
     .chart {
-        height: 30rem !important;
+        height: 26em !important;
 
         .tooltip {
             background: var(--gray-200) !important;

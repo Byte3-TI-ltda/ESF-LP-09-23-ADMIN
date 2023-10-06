@@ -1,24 +1,13 @@
 import { FilterOptions, TableContainer, TableWrapper } from "./styles";
-import usersData from '../../data/users.json'
 
 import { TbSortAscending, TbSortAscendingNumbers, TbTableExport, TbTable } from 'react-icons/tb';
 
-import * as XLSX from 'xlsx';
-
-interface UserData {
-    id: string;
-    name: string;
-    email: string;
-    date: string;
-}
+import useUsersData from '../../hooks/useUsersData';
+import { exportToExcel } from "../../utils/exportToExcel";
+// import formatDate from "../../utils/formatDate";
 
 export default function Table() {
-    function exportToExcel(data: UserData[], fileName: string) {
-        const worksheet = XLSX.utils.json_to_sheet(data);
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Dados');
-        XLSX.writeFile(workbook, `${fileName}.xlsx`);
-    }
+    const { usersData } = useUsersData();
 
     const handleExport = () => {
         exportToExcel(usersData, 'dados'); // 'dados' é o nome do arquivo Excel
@@ -28,10 +17,10 @@ export default function Table() {
         <TableWrapper>
             <FilterOptions>
                 <div>
-                    <button>
+                    <button title="Ordem crescente">
                         <TbSortAscending size={20} />
                     </button>
-                    <button>
+                    <button title="Ordem numérica">
                         <TbSortAscendingNumbers size={20} />
                     </button>
                 </div>
@@ -40,14 +29,14 @@ export default function Table() {
 
                 <div>
                     <div>
-                        <button>
+                        <button title="Ver todos os dados">
                             <TbTable size={20} />
                             <span>Ver tudo</span>
                         </button>
                     </div>
 
                     <div>
-                        <button onClick={handleExport}>
+                        <button title="Exportar dados para excel" onClick={handleExport}>
                             <TbTableExport size={20} />
                             <span>Exportar dados</span>
                         </button>
@@ -61,18 +50,23 @@ export default function Table() {
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
+                            <th>Telefone</th>
                             <th>Email</th>
                             <th>Data de inscrição</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {usersData.map(user => (
-                            <tr key={user.id}>
-                                <td>{user.id}</td>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.date}</td>
-                            </tr>
+                        {usersData.map((user, index) => (
+                            index < 5 && (
+                                <tr key={user.id}>
+                                    <td>{index + 1}</td>
+                                    <td>{user.data.firstName} {user.data.lastName}</td>
+                                    <td>{user.data.whatsapp}</td>
+                                    <td>{user.data.email}</td>
+                                    <td>10/10/2023</td>
+                                    {/* <td>{formatDate(user.createdAt)}</td> */}
+                                </tr>
+                            )
                         ))}
                     </tbody>
                 </TableContainer>
