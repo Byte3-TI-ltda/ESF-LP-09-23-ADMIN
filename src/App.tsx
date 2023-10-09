@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { GlobalStyles } from './styles/global';
 
@@ -8,24 +8,35 @@ import { SidebarProvider } from './contexts/SidebarContext';
 
 import allRoutes from './Routes';
 import { UsersProvider } from './contexts/UsersContext';
+import { UserTokenProvider } from './contexts/UserToken';
+import Login from './pages/Login';
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyles />
 
-      <UsersProvider>
-        <SidebarProvider>
-          <Layout>
-            <Routes>
-              {allRoutes.map(route => (
-                <Route key={route.path} path={route.path} element={route.element} />
-              ))}
-              <Route path="*" element={<Navigate to="/not-found" replace />} />
-            </Routes>
-          </Layout>
-        </SidebarProvider>
-      </UsersProvider>
+      <UserTokenProvider>
+
+        <UsersProvider>
+          <SidebarProvider>
+            <Layout>
+              <Routes>
+                {/* Rotas que não precisam do UsersProvider */}
+                <Route path="/login" element={<Login />} />
+
+                {/* Rotas que precisam do UsersProvider */}
+                {allRoutes.map(route => (
+                  route.path !== '/login' && (
+                    <Route key={route.path} path={route.path} element={route.element} />
+                  )
+                ))}
+              </Routes>
+            </Layout>
+          </SidebarProvider>
+        </UsersProvider>
+
+      </UserTokenProvider>
     </BrowserRouter>
   )
 }

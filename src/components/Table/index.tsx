@@ -4,6 +4,7 @@ import { TbSortAscending, TbSortAscendingNumbers, TbTableExport, TbTable } from 
 
 import useUsersData from '../../hooks/useUsersData';
 import { exportToExcel } from "../../utils/exportToExcel";
+import formatDate from "../../utils/formatDate";
 // import formatDate from "../../utils/formatDate";
 
 export default function Table() {
@@ -63,8 +64,7 @@ export default function Table() {
                                     <td>{user.data.firstName} {user.data.lastName}</td>
                                     <td>{user.data.whatsapp}</td>
                                     <td>{user.data.email}</td>
-                                    <td>10/10/2023</td>
-                                    {/* <td>{formatDate(user.createdAt)}</td> */}
+                                    <td>{formatDate(user.data.createdAt)}</td>
                                 </tr>
                             )
                         ))}

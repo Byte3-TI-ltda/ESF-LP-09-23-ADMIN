@@ -1,15 +1,26 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Banner, LoginContainer, LoginFormContainer } from "./styles";
 import heroImage from '../../assets/heroImage.png';
 
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../services/firebase';
+
+import useUserToken from '../../hooks/useUserToken';
+
 type InputProps = {
-    username: string
+    email: string
     password: string;
 }
 
 export default function Login() {
+    const [userEmail, setUserEmail] = useState('');
+    const [userPassword, setUserPassword] = useState('');
+
+    const { userToken, setUserToken } = useUserToken();
+
     const navigate = useNavigate();
 
     function handleRedirectUser() {
@@ -22,10 +33,39 @@ export default function Login() {
         formState: { errors },
     } = useForm<InputProps>()
 
-    const onSubmit: SubmitHandler<InputProps> = (data) => {
-        handleRedirectUser();
-        console.log(data)
-    }
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const token = await user.getIdToken();
+
+                if (token) {
+                    setUserToken(token);
+                    console.log('Token do usuário:', userToken);
+                }
+            }
+        });
+
+        // Certifique-se de cancelar o ouvinte ao desmontar o componente
+        return () => unsubscribe();
+    }, []);
+
+    const onSubmit: SubmitHandler<InputProps> = async (data) => {
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
+            const user = userCredential.user;
+
+            if (user && userToken !== '') {
+                console.log('token: ', userToken);
+                handleRedirectUser();
+                console.log(data);
+            }
+        } catch (error: any) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.error(errorCode, errorMessage);
+        }
+    };
 
     return (
         <LoginContainer>
@@ -40,14 +80,26 @@ export default function Login() {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div>
-                        <label htmlFor="">Username</label>
-                        <input type="text" placeholder="Digite seu nome de usuario" {...register("username", { required: true })} />
-                        {errors.username && <span>Este campo é obrigatório</span>}
+                        <label htmlFor="">Email</label>
+                        <input
+                            type="text"
+                            placeholder="Digite seu nome de usuario"
+                            {...register("email", { required: true })}
+
+                            onChange={(event) => setUserEmail(event.target.value)}
+                        />
+                        {errors.email && <span>Este campo é obrigatório</span>}
                     </div>
 
                     <div>
                         <label htmlFor="">Senha</label>
-                        <input type="password" placeholder="Digite sua senha" {...register("password", { required: true })} />
+                        <input
+                            type="password"
+                            placeholder="Digite sua senha"
+                            {...register("password", { required: true })}
+
+                            onChange={(event) => setUserPassword(event.target.value)}
+                        />
                         {errors.password && <span>Este campo é obrigatório</span>}
                     </div>
 
