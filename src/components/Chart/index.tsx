@@ -1,6 +1,8 @@
 import { ChartContainer } from "./styles";
 
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Label } from 'recharts';
+import useUsersData from '../../hooks/useUsersData';
+import Loading from "../Loading";
 
 const userData = [
     { date: '2023-01-01', quantity: 5 },
@@ -11,31 +13,39 @@ const userData = [
 ];
 
 export default function Chart() {
+    const { usersData, dataLoading } = useUsersData();
+
     return (
         <ChartContainer>
-            <ResponsiveContainer className="chart" width="95%">
-                <LineChart accessibilityLayer={true} data={userData} margin={{ top: 30, right: 40, left: 0, bottom: 30 }}>
+            {dataLoading ? (
+                <div className="loading">
+                    <Loading />
+                </div>
+            ) : (
+                <ResponsiveContainer className="chart" width="95%">
+                    <LineChart accessibilityLayer={true} data={userData} margin={{ top: 30, right: 40, left: 0, bottom: 30 }}>
 
-                    <Line type="monotone" strokeWidth={2} dataKey="quantity" stroke="#fcbf49" />
-                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                    <XAxis dataKey="date">
-                        <Label
-                            value={"Dias"}
-                            position="insideBottomRight"
-                            dx={0}
-                            dy={30}
-                        />
-                    </XAxis>
-                    <YAxis>
-                        <Label
-                            value={"Quantidade de usuários"} position="center"
-                            angle={-90}
-                            dx={-20}
-                        />
-                    </YAxis>
-                    <Tooltip wrapperClassName="tooltip" />
-                </LineChart>
-            </ResponsiveContainer>
+                        <Line type="monotone" strokeWidth={2} dataKey="quantity" stroke="#fcbf49" />
+                        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                        <XAxis dataKey="date">
+                            <Label
+                                value={"Dias"}
+                                position="insideBottomRight"
+                                dx={0}
+                                dy={30}
+                            />
+                        </XAxis>
+                        <YAxis>
+                            <Label
+                                value={"Quantidade de usuários"} position="center"
+                                angle={-90}
+                                dx={-20}
+                            />
+                        </YAxis>
+                        <Tooltip wrapperClassName="tooltip" />
+                    </LineChart>
+                </ResponsiveContainer>
+            )}
         </ChartContainer>
     )
 }

@@ -2,9 +2,11 @@ import { useContext } from 'react'
 import { UsersContext } from '../contexts/UsersContext';
 
 export default function useSidebarContext() {
-    const { usersData } = useContext(UsersContext);
+    const { usersData, dataLoading, setDataLoading } = useContext(UsersContext);
 
     return {
-        usersData
+        usersData,
+        dataLoading,
+        setDataLoading
     }
 }

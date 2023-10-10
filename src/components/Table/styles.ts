@@ -8,6 +8,13 @@ export const TableWrapper = styled.section`
 	display: flex;
   	overflow-x: auto;
   }
+
+  .loading {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 2rem;
+  }
 `
 
 export const TableContainer = styled.table`

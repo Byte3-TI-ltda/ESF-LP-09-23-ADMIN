@@ -20,6 +20,8 @@ export interface User {
 // Tipagem do contexto
 interface UsersContextType {
     usersData: User[],
+    dataLoading: boolean;
+    setDataLoading: (status: boolean) => void;
 }
 
 interface UsersProviderProps {
@@ -32,17 +34,23 @@ const USERS_DATA_STORAGE_KEY = 'admin:1.0.0:usersData';
 
 export function UsersProvider({ children }: UsersProviderProps) {
     const [usersData, setUsersData] = useState<User[]>([]);
+    const [localData, setLocalData] = useState<User[]>([]);
+    const [dataLoading, setDataLoading] = useState<boolean>(true);
 
-    const { userToken } = useUserTokenContext();
+    const { userToken, setUserToken } = useUserTokenContext();
 
     const location = useLocation();
 
     useEffect(() => {
-        const token = localStorage.getItem('admin:1.0.0:token');
-        const localUsersData = localStorage.getItem(USERS_DATA_STORAGE_KEY);
-        console.log('localStorage: ', token);
+        setInterval(() => {
+            setUserToken(localStorage.getItem('admin:1.0.0:token')!);
+        }, 500);
 
-        if (location.pathname === '/' && token && token !== '' && !localUsersData) {
+        const localUsersData = localStorage.getItem(USERS_DATA_STORAGE_KEY);
+        setLocalData(JSON.parse(localUsersData!));
+        console.log('localStorage: ', userToken);
+
+        if (location.pathname === '/' && userToken && userToken !== '' && !localUsersData) {
             axios.get('https://esf-lp-backend.onrender.com/contacts/list', {
                 headers: {
                     'Authorization': `Bearer ${userToken}`,
@@ -53,6 +61,8 @@ export function UsersProvider({ children }: UsersProviderProps) {
                     const data = response.data;
                     localStorage.setItem(USERS_DATA_STORAGE_KEY, JSON.stringify(data));
                     setUsersData(data);
+                    setDataLoading(false);
+                    console.log('FEZ A REQUEST')
                 }
             }).catch(error => {
                 console.error('Erro na requisição', error);
@@ -61,6 +71,8 @@ export function UsersProvider({ children }: UsersProviderProps) {
             if (localUsersData) {
                 const parsedData = JSON.parse(localUsersData);
                 setUsersData(parsedData);
+                console.log('NAO FEZ A REQUEST');
+                setDataLoading(false);
             }
         }
     }, [location.pathname]);
@@ -70,6 +82,8 @@ export function UsersProvider({ children }: UsersProviderProps) {
     return (
         <UsersContext.Provider value={{
             usersData,
+            dataLoading,
+            setDataLoading
         }}>
             {children}
         </UsersContext.Provider>

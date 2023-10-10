@@ -46,7 +46,7 @@ export const SummaryCard = styled.div`
     justify-content: space-between;
     flex-shrink: 0;
 
-    div {
+    > div:not(.noBorder) {
         width: fit-content;
         padding: 0.5rem;
         border: 1px solid var(--gray-200);

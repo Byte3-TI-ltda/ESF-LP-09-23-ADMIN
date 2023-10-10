@@ -22,4 +22,11 @@ export const ChartContainer = styled.div`
             height: 15rem !important;
   	    }
     }
+
+    .loading {
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+    }
 `

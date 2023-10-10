@@ -18,8 +18,13 @@ export function UserTokenProvider({ children }: UserTokenProviderProps) {
     const [userToken, setUserToken] = useState<string>('');
 
     useEffect(() => {
-        localStorage.setItem(USER_TOKEN_STORAGE_KEY, userToken);
-    }, [userToken])
+        const intervalId = setInterval(() => {
+            localStorage.setItem(USER_TOKEN_STORAGE_KEY, userToken);
+        }, 500); // 500 milissegundos = meio segundo
+
+        // Limpar o intervalo quando o componente for desmontado
+        return () => clearInterval(intervalId);
+    }, [userToken]);
 
     return (
         <UserTokenContext.Provider value={{

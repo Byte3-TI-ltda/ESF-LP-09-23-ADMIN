@@ -9,6 +9,7 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../services/firebase';
 
 import useUserToken from '../../hooks/useUserToken';
+import useLoggedUser from '../../hooks/useLoggedUser';
 
 type InputProps = {
     email: string
@@ -20,6 +21,7 @@ export default function Login() {
     const [userPassword, setUserPassword] = useState('');
 
     const { userToken, setUserToken } = useUserToken();
+    const { loggedUser, setLoggedUser } = useLoggedUser();
 
     const navigate = useNavigate();
 
@@ -37,15 +39,17 @@ export default function Login() {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const token = await user.getIdToken();
+                setLoggedUser(user);
 
-                if (token) {
+                if (token && user) {
                     setUserToken(token);
                     console.log('Token do usuário:', userToken);
+                    console.log('Logged user: ', loggedUser);
                 }
             }
         });
 
-        // Certifique-se de cancelar o ouvinte ao desmontar o componente
+        // cancela o ouvinte ao desmontar o componente
         return () => unsubscribe();
     }, []);
 
@@ -54,11 +58,17 @@ export default function Login() {
             const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
             const user = userCredential.user;
 
-            if (user && userToken !== '') {
-                console.log('token: ', userToken);
+            if (user) {
+                setLoggedUser(user);
+                console.log('Logged user: ', user);
                 handleRedirectUser();
+            }
+
+            if (userToken !== '') {
+                console.log('token: ', userToken);
                 console.log(data);
             }
+
         } catch (error: any) {
             const errorCode = error.code;
             const errorMessage = error.message;
