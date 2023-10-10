@@ -6,14 +6,25 @@ import useUsersData from '../../hooks/useUsersData';
 import { exportToExcel } from "../../utils/exportToExcel";
 import formatDate from "../../utils/formatDate";
 import Loading from "../Loading";
-// import formatDate from "../../utils/formatDate";
+import { useNavigate } from "react-router-dom";
 
-export default function Table() {
+interface TableProps {
+    limit: number;
+    hideButton: 'orderNumber' | 'seeAll';
+}
+
+export default function Table({ limit, hideButton }: TableProps) {
     const { usersData, dataLoading } = useUsersData();
+    const navigate = useNavigate();
 
     const handleExport = () => {
         exportToExcel(usersData, 'dados'); // 'dados' é o nome do arquivo Excel
     };
+
+    function handleNavigate() {
+        navigate('/all-clients');
+        window.scrollTo(0, 0);
+    }
 
     return (
         <TableWrapper>
@@ -24,7 +35,7 @@ export default function Table() {
             ) : (
                 <>
                     <FilterOptions>
-                        <div>
+                        <div className={hideButton !== 'orderNumber' ? 'hide' : ''}>
                             <button title="Ordem crescente">
                                 <TbSortAscending size={20} />
                             </button>
@@ -33,11 +44,15 @@ export default function Table() {
                             </button>
                         </div>
 
-                        <div className="divider" />
+                        <div className={hideButton !== 'orderNumber' && hideButton !== 'seeAll' ? 'divider' : 'divider hide'} />
 
                         <div>
                             <div>
-                                <button title="Ver todos os dados">
+                                <button
+                                    className={hideButton !== 'seeAll' ? 'hide' : ''}
+                                    title="Ver todos os dados"
+                                    onClick={handleNavigate}
+                                >
                                     <TbTable size={20} />
                                     <span>Ver tudo</span>
                                 </button>
@@ -63,7 +78,7 @@ export default function Table() {
                             </thead>
                             <tbody>
                                 {usersData.map((user, index) => (
-                                    index < 5 && (
+                                    index < limit && (
                                         <tr key={user.id}>
                                             <td>{index + 1}</td>
                                             <td>{user.data.firstName} {user.data.lastName}</td>

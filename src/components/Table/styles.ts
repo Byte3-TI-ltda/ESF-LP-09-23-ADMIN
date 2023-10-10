@@ -15,6 +15,10 @@ export const TableWrapper = styled.section`
 	justify-content: center;
 	padding: 2rem;
   }
+
+  .hide {
+	display: none;
+  }
 `
 
 export const TableContainer = styled.table`

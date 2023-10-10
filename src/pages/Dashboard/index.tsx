@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Table from "../../components/Table";
 import { DashboardContainer, SummaryCard, SummaryContainer } from "./styles";
 
@@ -63,7 +62,7 @@ export default function Dashboard() {
 
                 <div>
                     <h2>Dados dos usuários</h2>
-                    <Table />
+                    <Table limit={5} hideButton="seeAll" />
                 </div>
             </DashboardContainer>
         ) : (

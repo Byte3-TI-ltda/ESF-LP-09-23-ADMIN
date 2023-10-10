@@ -1,4 +1,4 @@
-import { FiHelpCircle, FiHome, FiSettings, FiUser } from "react-icons/fi";
+import { FiHelpCircle, FiHome, FiSettings, FiUser, FiUsers } from "react-icons/fi";
 import { BottomMenuContainer } from "./styles";
 import { Link } from "react-router-dom";
 
@@ -15,6 +15,14 @@ export default function BottomMenu({ currentURL }: BottomMenuProps) {
             >
                 <FiHome size={20} />
                 <span>Home</span>
+            </Link>
+
+            <Link
+                to={'/all-clients'}
+                className={currentURL.endsWith("/all-clients") ? "selected" : ""}
+            >
+                <FiUsers size={24} />
+                <span>Clientes</span>
             </Link>
 
             <Link

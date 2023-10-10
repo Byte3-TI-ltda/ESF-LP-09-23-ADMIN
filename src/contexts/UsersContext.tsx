@@ -37,6 +37,8 @@ export function UsersProvider({ children }: UsersProviderProps) {
     const [localData, setLocalData] = useState<User[]>([]);
     const [dataLoading, setDataLoading] = useState<boolean>(true);
 
+    console.log(localData);
+
     const { userToken, setUserToken } = useUserTokenContext();
 
     const location = useLocation();

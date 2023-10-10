@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useSidebarContext from "../../../hooks/useSidebar";
 import { SideBarContainer, SidebarActions } from "./styles";
 
-import { FiHome, FiSettings, FiMenu, FiHelpCircle, FiUser } from 'react-icons/fi'
+import { FiHome, FiSettings, FiMenu, FiHelpCircle, FiUser, FiUsers } from 'react-icons/fi'
 
 interface SideMenuProps {
     currentURL: string;
@@ -25,6 +25,14 @@ export default function SideMenu({ currentURL }: SideMenuProps) {
                     >
                         <FiHome size={24} />
                         <span>Home</span>
+                    </Link>
+
+                    <Link
+                        to={'/all-clients'}
+                        className={currentURL.endsWith("/all-clients") ? "selected" : ""}
+                    >
+                        <FiUsers size={24} />
+                        <span>Clientes</span>
                     </Link>
                 </div>
 

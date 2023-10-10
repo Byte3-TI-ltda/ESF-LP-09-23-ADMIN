@@ -6,6 +6,7 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import Help from './pages/Help';
 import NotFound from './pages/NotFound';
+import AllClients from "./pages/AllClients";
 
 interface RouteProps {
   path: string;
@@ -32,6 +33,10 @@ const allRoutes: RouteProps[] = [
   {
     path: '/help',
     element: <Help />
+  },
+  {
+    path: '/all-clients',
+    element: <AllClients />
   },
   {
     path: '/not-found',

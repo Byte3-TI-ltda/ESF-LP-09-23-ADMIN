@@ -12,6 +12,7 @@ import { UsersProvider } from './contexts/UsersContext';
 import { UserTokenProvider } from './contexts/UserToken';
 import { LoggedUserProvider } from './contexts/LoggedUser';
 import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
                     )
                   ))}
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Layout>
             </SidebarProvider>

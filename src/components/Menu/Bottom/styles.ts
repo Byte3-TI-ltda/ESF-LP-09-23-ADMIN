@@ -15,7 +15,7 @@ export const BottomMenuContainer = styled.nav`
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 2rem;
+        gap: 1.5rem;
 
         a {
             display: flex;
